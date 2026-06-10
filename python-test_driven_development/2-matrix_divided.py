@@ -4,8 +4,8 @@
 
 def matrix_divided(matrix, div):
     """Divides all elements of a matrix."""
-    if not isinstance(matrix, list) or not all(
-            isinstance(row, list) for row in matrix) or not all(
+    if not isinstance(matrix, list) or len(matrix) == 0 or not all(
+            isinstance(row, list) and len(row) > 0 for row in matrix) or not all(
             isinstance(el, (int, float))
             for row in matrix for el in row):
         raise TypeError(
