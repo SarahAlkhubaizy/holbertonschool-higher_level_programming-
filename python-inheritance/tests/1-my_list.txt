@@ -13,3 +13,6 @@
 >>> my_list3 = MyList([3, 1, 2])
 >>> my_list3.print_sorted()
 [1, 2, 3]
+>>> my_list4 = MyList([3, -1, 2, -5])
+>>> my_list4.print_sorted()
+[-5, -1, 2, 3]
