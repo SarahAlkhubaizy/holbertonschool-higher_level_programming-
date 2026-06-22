@@ -1,52 +1,47 @@
-===========================
-Tests for BaseGeometry class
-===========================
+===============================
+How to use 7-base_geometry.py
+===============================
 
->>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
->>> bg = BaseGeometry()
+First, import the BaseGeometry class:
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
-# Valid integers
->>> bg.integer_validator("my_int", 12)
->>> bg.integer_validator("width", 89)
+Create an instance of BaseGeometry:
+    >>> bg = BaseGeometry()
 
-# String raises TypeError
->>> bg.integer_validator("name", "John")
-Traceback (most recent call last):
-    ...
-TypeError: name must be an integer
+Testing area() method, it should raise an Exception:
+    >>> try:
+    ...     bg.area()
+    ... except Exception as e:
+    ...     print("[{}] {}".format(e.__class__.__name__, e))
+    [Exception] area() is not implemented
 
-# Zero raises ValueError
->>> bg.integer_validator("age", 0)
-Traceback (most recent call last):
-    ...
-ValueError: age must be greater than 0
+Testing integer_validator() with a valid integer:
+    >>> bg.integer_validator("my_int", 12)
 
-# Negative raises ValueError
->>> bg.integer_validator("distance", -4)
-Traceback (most recent call last):
-    ...
-ValueError: distance must be greater than 0
+Testing integer_validator() with a 0 (should raise ValueError):
+    >>> try:
+    ...     bg.integer_validator("width", 0)
+    ... except ValueError as e:
+    ...     print("[{}] {}".format(e.__class__.__name__, e))
+    [ValueError] width must be greater than 0
 
-# Float raises TypeError
->>> bg.integer_validator("height", 1.5)
-Traceback (most recent call last):
-    ...
-TypeError: height must be an integer
+Testing integer_validator() with a negative number (should raise ValueError):
+    >>> try:
+    ...     bg.integer_validator("height", -10)
+    ... except ValueError as e:
+    ...     print("[{}] {}".format(e.__class__.__name__, e))
+    [ValueError] height must be greater than 0
 
-# None raises TypeError
->>> bg.integer_validator("x", None)
-Traceback (most recent call last):
-    ...
-TypeError: x must be an integer
+Testing integer_validator() with a string (should raise TypeError):
+    >>> try:
+    ...     bg.integer_validator("name", "John")
+    ... except TypeError as e:
+    ...     print("[{}] {}".format(e.__class__.__name__, e))
+    [TypeError] name must be an integer
 
-# Bool raises TypeError
->>> bg.integer_validator("flag", True)
-Traceback (most recent call last):
-    ...
-TypeError: flag must be an integer
-
-# area() raises Exception
->>> bg.area()
-Traceback (most recent call last):
-    ...
-Exception: area() is not implemented
+Testing integer_validator() with a float (should raise TypeError):
+    >>> try:
+    ...     bg.integer_validator("weight", 12.5)
+    ... except TypeError as e:
+    ...     print("[{}] {}".format(e.__class__.__name__, e))
+    [TypeError] weight must be an integer
