@@ -1,26 +1,20 @@
 #!/usr/bin/env python3
-"""Module for SwimMixin, FlyMixin, and Dragon classes."""
 
 
-class SwimMixin:
-    """Mixin that provides swimming ability."""
+class VerboseList(list):
+    def append(self, item):
+        super().append(item)
+        print(f"Added [{item}] to the list.")
 
-    def swim(self):
-        """Print swimming message."""
-        print("The creature swims!")
+    def extend(self, items):
+        super().extend(items)
+        print(f"Extended the list with [{len(items)}] items.")
 
+    def remove(self, item):
+        print(f"Removed [{item}] from the list.")
+        super().remove(item)
 
-class FlyMixin:
-    """Mixin that provides flying ability."""
-
-    def fly(self):
-        """Print flying message."""
-        print("The creature flies!")
-
-
-class Dragon(SwimMixin, FlyMixin):
-    """Dragon class that can swim and fly."""
-
-    def roar(self):
-        """Print roaring message."""
-        print("The dragon roars!")
+    def pop(self, index=-1):
+        item = self[index]
+        print(f"Popped [{item}] from the list.")
+        return super().pop(index)
