@@ -1,20 +1,16 @@
 #!/usr/bin/env python3
 
 
-class VerboseList(list):
-    def append(self, item):
-        super().append(item)
-        print(f"Added [{item}] to the list.")
+class SwimMixin:
+    def swim(self):
+        print("The creature swims!")
 
-    def extend(self, items):
-        super().extend(items)
-        print(f"Extended the list with [{len(items)}] items.")
 
-    def remove(self, item):
-        print(f"Removed [{item}] from the list.")
-        super().remove(item)
+class FlyMixin:
+    def fly(self):
+        print("The creature flies!")
 
-    def pop(self, index=-1):
-        item = self[index]
-        print(f"Popped [{item}] from the list.")
-        return super().pop(index)
+
+class Dragon(SwimMixin, FlyMixin):
+    def roar(self):
+        print("The dragon roars!")
