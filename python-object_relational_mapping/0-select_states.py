@@ -5,7 +5,13 @@ import MySQLdb
 
 
 def select_states(username, password, db_name):
-    """Connect to MySQL and print all rows from the states table."""
+    """Connect to MySQL and print all states ordered by id.
+
+    Args:
+        username (str): the MySQL username.
+        password (str): the MySQL password.
+        db_name (str): the database name.
+    """
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -14,7 +20,7 @@ def select_states(username, password, db_name):
         db=db_name
     )
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    cursor.execute("SELECT id, name FROM states ORDER BY id ASC")
     rows = cursor.fetchall()
     for row in rows:
         print(row)
