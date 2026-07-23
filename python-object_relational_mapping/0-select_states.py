@@ -4,12 +4,8 @@ import sys
 import MySQLdb
 
 
-if __name__ == "__main__":
+def select_states(username, password, db_name):
     """Connect to MySQL and print all rows from the states table."""
-    username = sys.argv[1]
-    password = sys.argv[2]
-    db_name = sys.argv[3]
-
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -17,12 +13,14 @@ if __name__ == "__main__":
         passwd=password,
         db=db_name
     )
-
     cursor = db.cursor()
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
     rows = cursor.fetchall()
     for row in rows:
         print(row)
-
     cursor.close()
     db.close()
+
+
+if __name__ == "__main__":
+    select_states(sys.argv[1], sys.argv[2], sys.argv[3])
